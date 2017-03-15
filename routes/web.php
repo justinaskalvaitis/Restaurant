@@ -24,3 +24,5 @@ Auth::routes();
 Route::get('/home', 'HomeController@index');
 
 Route::get('/justas', 'HomeController@justas');
+
+Route::resource('dishes', 'DishController');
