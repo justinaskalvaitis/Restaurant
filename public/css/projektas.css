@@ -1,3 +1,16 @@
 body {
-	background-color: aliceblue;
+	background-image: url(https://www.iwantwallpaper.co.uk/images/1-wall-loft-white-brick-effect-giant-wallpaper-mural-p559-903_image.jpg);
+}
+.form-group input {
+	width: 100%;
+}
+
+.form-group textarea {
+	max-width: 100%;
+	min-width: 100%;
+}
+
+.thumbnail {
+	background-image: url(http://rebelwalls.com.au/20.0.0.1/15599/14cd7c82f27c8cc22ebb80b84fd23735.jpg)
+	
 }

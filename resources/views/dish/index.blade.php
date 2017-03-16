@@ -10,9 +10,9 @@
 					<div class="thumbnail">
 						<a href ="{{ route('dishes.show', $dish->id) }}"><img src="{{ $dish->photo }}"></a>
 						<p>{{ $dish->description }}</p>
-						<p>{{ $dish->quantity }} eur</p>
-						<p>{{ $dish->price }} eur</p>
-						<a href="{{ route('dishes.edit', $dish->id) }}">Edit</a>
+						<p>Quantity: {{ $dish->quantity }}</p>
+						<p>Price: {{ $dish->price }} eur</p>
+						<a href="{{ route('dishes.edit', $dish->id) }}" class="btn btn-success">Edit</a>
 					</div>
 				</div>
 		@endforeach
