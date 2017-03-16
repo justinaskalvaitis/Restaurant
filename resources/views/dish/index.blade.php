@@ -6,12 +6,13 @@
 	@foreach($dishes->chunk(3) as $chunk)
 	<div class="row">
 		@foreach($chunk as $dish)
-				<div class="col-md-4 justify"  >
+				<div class="col-md-4 "  >
 					<div class="thumbnail">
-						<img src="{{ $dish->photo }}">
+						<a href ="{{ route('dishes.show', $dish->id) }}"><img src="{{ $dish->photo }}"></a>
 						<p>{{ $dish->description }}</p>
 						<p>{{ $dish->quantity }} eur</p>
 						<p>{{ $dish->price }} eur</p>
+						<a href="{{ route('dishes.edit', $dish->id) }}">Edit</a>
 					</div>
 				</div>
 		@endforeach

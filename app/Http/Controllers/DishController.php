@@ -15,7 +15,7 @@ class DishController extends Controller
     public function index()
     {
         $dishes = Dish::all();
-        return view('dish.index', ['dishes' => $dishes]);
+        return view('dish.index', compact('dishes'));
     }
 
     /**
@@ -47,7 +47,9 @@ class DishController extends Controller
      */
     public function show(Dish $dish)
     {
-        //
+        $dishes = Dish::find($dish);
+        return view('dish.show', compact('dishes'));
+
     }
 
     /**
@@ -58,7 +60,8 @@ class DishController extends Controller
      */
     public function edit(Dish $dish)
     {
-        //
+        $dishes = Dish::find($dish);
+        return view('dish.form', compact('dishes'));
     }
 
     /**
