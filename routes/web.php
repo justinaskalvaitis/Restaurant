@@ -28,3 +28,7 @@ Route::get('/justas', 'HomeController@justas');
 Route::resource('dishes', 'DishController');
 
 Route::resource('orders', 'OrdersController');
+
+Route::post('cart', 'OrdersController@addToCart')->name('cart.add');
+
+Route::delete('cart', 'OrdersController@clearCart')->name('cart.clear');

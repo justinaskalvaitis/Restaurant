@@ -30,6 +30,8 @@
 		{!! Form::date('date', null) !!}
 	</div>
 
+	
+
 	{!! Form::submit('save', ['class' => 'btn btn-primary']) !!}
 	{!! Form::close() !!}
 

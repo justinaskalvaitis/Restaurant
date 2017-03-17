@@ -2,9 +2,12 @@
 
 @section('content')
 <div class="container">
+<a href="{{ route('dishes.create') }}" class="btn btn-success">New</a>
+<a href="{{ route('orders.index') }}" class="btn btn-warning pull-right">Orders</a>
 <h1>Dishes</h1>
 	@foreach($dishes->chunk(3) as $chunk)
 	<div class="row">
+
 		@foreach($chunk as $dish)
 				<div class="col-md-4 "  >
 					<div class="thumbnail">
@@ -13,6 +16,8 @@
 						<p>Quantity: {{ $dish->quantity }}</p>
 						<p>Price: {{ $dish->price }} eur</p>
 						<a href="{{ route('dishes.edit', $dish->id) }}" class="btn btn-success">Edit</a>
+
+						<a href="#" data-id="{{ $dish->id }}" class="btn btn-warning add-to-cart">Add to cart</a>
 					</div>
 				</div>
 		@endforeach

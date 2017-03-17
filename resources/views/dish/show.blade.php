@@ -10,7 +10,7 @@
 			<p>{{$dishes->description}}</p>
 			<ul>
 				<li>Price: {{$dishes->price}} eur</li>
-				<li>Quantity: {{$dishes->quantity}} eur</li>
+				<li>Quantity: {{$dishes->quantity}}</li>
 			</ul>
 		</div>
 	</div>
