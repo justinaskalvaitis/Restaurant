@@ -23,7 +23,6 @@ Auth::routes();
 
 Route::get('/home', 'HomeController@index');
 
-Route::get('/justas', 'HomeController@justas');
 
 Route::resource('dishes', 'DishController');
 
@@ -32,3 +31,9 @@ Route::resource('orders', 'OrdersController');
 Route::post('cart', 'OrdersController@addToCart')->name('cart.add');
 
 Route::delete('cart', 'OrdersController@clearCart')->name('cart.clear');
+
+Route::get('cart', 'OrdersController@checkout')->name('cart.checkout');
+
+Route::get('checkout', 'OrdersController@carToOrder')->name('cart.to_order');
+
+Route::delete('carts', 'OrdersController@deleteItem')->name('cart.clear_one');

@@ -28,4 +28,8 @@ class Dish extends Model
     	return number_format($value / 100, 2);
     }
 
+    public function order_lines(){
+    	return $this->hasMany('App\OrderLine');
+    }
+
 }

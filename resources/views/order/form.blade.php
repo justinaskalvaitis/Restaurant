@@ -9,8 +9,21 @@
 	@else
 		{!! Form::open(['route' => ['orders.store'], 'method' => 'POST']) !!}
 	@endif
+	
+	<div class="form-group">
+	<h4>Name</h4>
+		{!! Form::text('name', Auth::user() ? Auth::user()->name : null, ['class' => 'form-control', 'placeholder' => 'name']) !!}
+	</div>
 
 	<div class="form-group">
+	<h4>Email</h4>
+		{!! Form::email('email', Auth::user() ? Auth::user()->email : null, ['class' => 'form-control', 'placeholder' => 'email']) !!}
+	</div>
+
+
+
+
+	<!-- <div class="form-group">
 		<h4>Name</h4>
 		{!! Form::text('name', null) !!}
 	</div>
@@ -18,21 +31,31 @@
 	<div class="form-group">
 		<h4>Email</h4>
 		{!! Form::text('email', null) !!}
-	</div>
+	</div> -->
 
-	<div class="form-group">
+	<!-- <div class="form-group">
 		<h4>Total</h4>
 		{!! Form::text('total', null) !!}
-	</div>
-
-	<div class="form-group">
-		<h4>Date</h4>
-		{!! Form::date('date', null) !!}
-	</div>
+	</div> -->
 
 	
 
+	@if(session('cart.total'))
+	<p>Total: {{ session('cart.total')}} &euro;</p>
+	<!-- @else -->
+	<!-- <div class="form-group">
+		<h4>Total</h4>
+		{!! Form::text('total', null, ['class' => 'form-control', 'placeholder' => 'total']) !!}
+	</div> -->
+	@endif 
+	<!-- <div class="form-group">
+		{!! Form::hidden('date', \Carbon\Carbon::now()) !!}
+	</div> -->
+
+	
+	@if(Auth::check())
 	{!! Form::submit('save', ['class' => 'btn btn-primary']) !!}
+	@endif
 	{!! Form::close() !!}
 
 	@if(isset($order))

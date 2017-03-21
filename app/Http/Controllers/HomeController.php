@@ -26,12 +26,5 @@ class HomeController extends Controller
     {
         return view('home');
     }
-
-    public function justas()
-    {
-       $user = User::first();
-        dd($user->email);
-    }
-
     
 }

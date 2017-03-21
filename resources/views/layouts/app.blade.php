@@ -13,13 +13,15 @@
     <!-- Styles -->
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
      <link href="{{ asset('css/projektas.css') }}" rel="stylesheet">
+    <link rel="stylesheet" type="text/css" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
 
     <!-- Scripts -->
     <script>
         window.Laravel = {!! json_encode([
             'csrfToken' => csrf_token(),
             'cartAddRoute' => route('cart.add'),
-            'cartClearRoute' => route('cart.clear')
+            'cartClearRoute' => route('cart.clear'),
+            
         ]) !!};
     </script>
 
@@ -40,7 +42,7 @@
                     </button>
 
                     <!-- Branding Image -->
-                    <a class="navbar-brand" href="{{ url('/') }}">
+                    <a class="navbar-brand" href="{{ url('/dishes') }}">
                         {{ config('app.name', 'Laravel') }}
                     </a>
                 </div>
@@ -60,8 +62,8 @@
                         @else<li class="dropdown">
                             <a class="dropdown-toggle" data-toggle="dropdown" role="button" arian-expanded="false">Total: <span id="cart-total"> {{ session('cart.total') ?: '0' }} </span> €</a>
                             
-<ul id="cart-items" class="dropdown-menu" role="menu">
-                            
+                            <ul id="cart-items" class="dropdown-menu" role="menu">
+
                             @if(session('cart.items') && count(session('cart.items'))>0)
 
                             
@@ -74,7 +76,8 @@
                             @endif
                             </ul>
                             </li>
-                            <li><a href="#" id="clear-cart"><sub>Clear Cart</sub></a></li>
+                            <li><a href="#" id="clear-cart">Clear Cart</sub></a></li>
+                            <li><a href="{{ route('cart.checkout') }}" id="checkout">Checkout</a></li>
                               <li class="dropdown">
                                   <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
                                       {{ Auth::user()->name }} <span class="caret"></span>
@@ -99,7 +102,11 @@
                 </div>
             </div>
         </nav>
-
+        @if(session('message'))
+        <div class="alert alert-{{ session('message')['type'] }}">
+            {{ session('message')['text'] }}
+        </div>
+        @endif
         @yield('content')
     </div>
 
