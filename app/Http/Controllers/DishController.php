@@ -26,7 +26,7 @@ class DishController extends Controller
     public function create()
     {
         return view('dish.form');
-        return redirect()->route('dishes.index');
+        // return redirect()->route('dishes.index');
     }
 
     /**

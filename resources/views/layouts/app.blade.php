@@ -21,7 +21,7 @@
             'csrfToken' => csrf_token(),
             'cartAddRoute' => route('cart.add'),
             'cartClearRoute' => route('cart.clear'),
-            
+
         ]) !!};
     </script>
 

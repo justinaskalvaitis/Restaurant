@@ -16,8 +16,9 @@ class CreateTablesTable extends Migration
         Schema::create('tables', function (Blueprint $table) {
             $table->increments('id');
             $table->string('name');
-            $table->number('amount');
-            $talbe->string('photo');
+            $table->integer('min_amount');
+            $table->integer('max_amount');
+            $table->string('photo');
             $table->timestamps();
         });
     }

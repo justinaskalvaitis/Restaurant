@@ -36,4 +36,6 @@ Route::get('cart', 'OrdersController@checkout')->name('cart.checkout');
 
 Route::get('checkout', 'OrdersController@carToOrder')->name('cart.to_order');
 
-Route::delete('carts', 'OrdersController@deleteItem')->name('cart.clear_one');
+Route::get('checkout/delete/{id}', 'OrdersController@deleteItem')->name('cart.delete_item');
+
+Route::resource('tables', 'TableController');

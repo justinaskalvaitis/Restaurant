@@ -48,18 +48,3 @@ function refreshCart(items) {
   }
 }
 
-$('#delete-item').click(function(e) {
-  e.preventDefault();
-
- $.ajax({
-    url: window.Laravel.cartDeleteItem,
-    method: 'delete',
-    data: {
-      _token: window.Laravel.csrfToken,
-    },
-    success: function(response) {
-      $('#cart-total').html(0);
-      refreshCart([]);
-    }
-  })
-});

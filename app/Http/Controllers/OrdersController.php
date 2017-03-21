@@ -55,7 +55,13 @@ class OrdersController extends Controller
             'email' => $request->email,
             'total' => session('cart.total'),
             'date' => \Carbon\Carbon::now(),
-            'user_id' => \Auth::user()->id
+            'user_id' => \Auth::user()->id,
+
+            'contact_person' => $request->get('contact_person'),
+            'phone' => $request->get('phone'),
+            'order_date' => $request->get('order_date'),
+            'order_time' => $request->get('order_time')
+
 
 
             ]);
@@ -181,6 +187,27 @@ class OrdersController extends Controller
         return view('checkout');
     }
 
+    public function deleteItem(Request $request){
+        $id = $request->id;
+        $items = session('cart.items');
+        $total = session('cart.total');
+
+
+        foreach($items as $index => $item)
+        {
+            if($item['id'] == $id) {
+            $total -= $item['total'];
+            unset($items[$index]);
+            break;
+    }
+        }
+
+        session(['cart.items' => $items,
+            'cart.total' => $total]);
+
+
+        return redirect()->route('cart.checkout');
+    }
     
 }
 

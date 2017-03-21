@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers;
 
-use App\table;
+use App\Table;
 use Illuminate\Http\Request;
 
 class TableController extends Controller
@@ -14,7 +14,8 @@ class TableController extends Controller
      */
     public function index()
     {
-        //
+        $tables = Table::all();
+        return view('table.index', compact('tables'));
     }
 
     /**
@@ -24,7 +25,7 @@ class TableController extends Controller
      */
     public function create()
     {
-        //
+        return view('table.form');
     }
 
     /**
@@ -35,7 +36,12 @@ class TableController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        Table::create([
+            'name' => $request->get('name'),
+            'min_amount' => $request->get('min_amount'),
+            'max_amount' => $request->get('max_amount'),
+            'photo' => $request->get('photo')
+            ]);
     }
 
     /**
@@ -46,7 +52,8 @@ class TableController extends Controller
      */
     public function show(table $table)
     {
-        //
+        $tables = Table::find($table);
+        return view('table.show', compact('tables'));
     }
 
     /**
@@ -55,9 +62,10 @@ class TableController extends Controller
      * @param  \App\table  $table
      * @return \Illuminate\Http\Response
      */
-    public function edit(table $table)
+    public function edit($id)
     {
-        //
+        $table = Table::find($id);
+        return view('table.form', compact('table'));
     }
 
     /**
@@ -67,9 +75,10 @@ class TableController extends Controller
      * @param  \App\table  $table
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, table $table)
+    public function update(Request $request, $id)
     {
-        //
+        Table::find($id)->update($request->all());
+        return redirect()->route('tables.index');
     }
 
     /**
@@ -78,8 +87,9 @@ class TableController extends Controller
      * @param  \App\table  $table
      * @return \Illuminate\Http\Response
      */
-    public function destroy(table $table)
+    public function destroy($id)
     {
-        //
+        Table::find($id)->delete();
+        return redirect()->route('tables.index');
     }
 }
