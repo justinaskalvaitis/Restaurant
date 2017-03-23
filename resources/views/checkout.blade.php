@@ -34,14 +34,39 @@
 		</tbody>
 
 	</table>
-		{!! Form::open(['route' => ['orders.store'], 'method' => 'POST']) !!}
+		{!! Form::open(['route' => ['checkout.store'], 'method' => 'POST']) !!}
 
 		<div>
 			<h3>Personal information</h3>
 			<div class="form-group">
-				<h4>Your name:</h4>
+				<h4>Contact person:</h4>
 				{!! Form::text('contact_person', null, ['class' => 'form-control', 'placeholder' => 'name']) !!}
 			</div>
+
+			<div class="form-group">
+			<h4>Name</h4>
+				{!! Form::text('name', Auth::user() ? Auth::user()->name : null, ['class' => 'form-control', 'placeholder' => 'name']) !!}
+			</div>
+
+			<div class="form-group">
+			<h4>Email</h4>
+				{!! Form::email('email', Auth::user() ? Auth::user()->email : null, ['class' => 'form-control', 'placeholder' => 'email']) !!}
+			</div>
+
+			<div class="form-group">
+				<h4>Number of persons:</h4>
+				{!! Form::number('number_of_persons', null, ['class' => 'form-control', 'placeholder' => 'Number of persons']) !!}
+			</div>
+
+			<div class="form-group">
+            {!! Form::Label('table_name', 'Select Table:') !!}
+            <select class="form-control" name="table_name">
+
+               @foreach($tables as $table)
+                    <option value="{{$table->id}}">{{$table->name}}</option>
+                @endforeach
+            </select>
+       		</div>
 
 			<div class="form-group">
 				<h4>Your phone:</h4>
@@ -64,11 +89,6 @@
 	{!! Form::close() !!}
 
 
-			
-		<!-- </div>
-
-		
-		<a href="{{ route('orders.create') }}" id="buyout" class="btn btn-success">Buy</a> -->
 
 
 {!! Form::close() !!}

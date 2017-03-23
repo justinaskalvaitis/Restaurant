@@ -2,16 +2,18 @@
 
 namespace App\Http\Controllers;
 
-use App\Dish;
+use App\Contact;
 use Illuminate\Http\Request;
 
-class DishController extends Controller
+class ContactController extends Controller
 {
 
 
-   public function __construct() {
+    public function __construct() {
         $this->middleware('auth.admin')
-             ->except(['index', 'show']);
+            ->except(['index', 'show', 'addToCart', 'clearCart', 'deleteLine', 'checkout']);
+
+        $this->middleware('auth')->except(['index', 'show', 'addToCart', 'clearCart', 'deleteLine', 'checkout']);
     }
     /**
      * Display a listing of the resource.
@@ -20,8 +22,8 @@ class DishController extends Controller
      */
     public function index()
     {
-        $dishes = Dish::all();
-        return view('dish.index', compact('dishes'));
+        $contacts = Contact::first();
+        return view('contact.show', compact('contacts'));
     }
 
     /**
@@ -31,8 +33,7 @@ class DishController extends Controller
      */
     public function create()
     {
-        return view('dish.form');
-        // return redirect()->route('dishes.index');
+        return view('contact.form');
     }
 
     /**
@@ -43,65 +44,57 @@ class DishController extends Controller
      */
     public function store(Request $request)
     {
-        Dish::create([
+        Contact::create([
             'title' => $request->get('title'),
-            'photo' => $request->get('photo'),
-            'description' => $request->get('description'),
-            'netto_price' => $request->get('netto_price'),
-            'price' => $request->get('price'),
-            'quantity' => $request->get('quantity'),
+            'address' => $request->get('address'),
+            'email' => $request->get('email'),
+            'phone' => $request->get('phone'),
+            'hours' => $request->get('hours'),
+            'map' => $request->get('map')
             ]);
     }
 
     /**
      * Display the specified resource.
      *
-     * @param  \App\Dish  $dish
+     * @param  \App\Contact  $contact
      * @return \Illuminate\Http\Response
      */
-    public function show($dish)
+    public function show(Contact $contact)
     {
-        $dishes = Dish::find($dish);
-        return view('dish.show', compact('dishes'));
-
     }
 
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\Dish  $dish
+     * @param  \App\Contact  $contact
      * @return \Illuminate\Http\Response
      */
-    public function edit( $id)
+    public function edit(Contact $contact)
     {
-        $dishes = Dish::find($id);
-
-
-        return view('dish.form', compact('dishes'));
-    } 
+        //
+    }
 
     /**
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Dish  $dish
+     * @param  \App\Contact  $contact
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Request $request, Contact $contact)
     {
-        Dish::find($id)->update($request->all());
-        return  redirect()->route('dishes.index');
+        //
     }
 
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\Dish  $dish
+     * @param  \App\Contact  $contact
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy(Contact $contact)
     {
-       Dish::find($id)->delete();
-       return redirect()->route('dishes.index');
+        //
     }
 }

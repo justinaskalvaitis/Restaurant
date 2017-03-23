@@ -18,3 +18,47 @@ body {
 	background-size: 100%;
 	
 }
+
+.thumbnail img:hover {
+	border-radius: 30px;
+	transition: 1s all;
+}
+
+.mainNav li {
+	list-style: none;
+	display: inline-block;
+	font-size: 2rem;
+			margin-right: 30px;
+			margin-left: 30px;
+
+}
+.mainNav {
+		margin: 9px;
+
+		margin-bottom: -40px;
+}
+
+.mainNav li a{
+	text-decoration: none;
+	color: grey;
+}
+
+.mainNav li a:hover{
+	color: white;
+	transition: 1s all;
+}
+
+a:hover{
+	color: white;
+	transition: 1s all;
+}
+li{
+	list-style: none;
+}
+
+.workingHours {
+	margin: 20px;
+}
+iframe{
+	margin-top: 150px;
+}

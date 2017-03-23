@@ -14,7 +14,9 @@
 						<p>Table name: {{ $table->name }}</p>
 						<p>Min amount of people: {{ $table->min_amount }}</p>
 						<p>Max amount of people: {{ $table->max_amount }}</p>
+						@if(Auth::user() && Auth::user()->isAdmin())
 						<a href="{{ route('tables.edit', $table->id) }}" class="btn btn-success">Edit</a>
+						@endif
 					</div>
 				</div>
 		@endforeach

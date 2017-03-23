@@ -11,9 +11,7 @@
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
+Route::get('/', 'DishController@index');
 
 Auth::routes();
 
@@ -39,3 +37,18 @@ Route::get('checkout', 'OrdersController@carToOrder')->name('cart.to_order');
 Route::get('checkout/delete/{id}', 'OrdersController@deleteItem')->name('cart.delete_item');
 
 Route::resource('tables', 'TableController');
+
+Route::post('cart/reservation', 'CheckoutController@store')->name('checkout.store');
+
+Route::get('cart/confirm', 'CheckoutController@confirm')->name('checkout.confirm');
+
+Route::get('profile', 'UserController@profile')->name('profile')->middleware('auth');
+
+Route::put('profile', 'UserController@update')->name('profile.update')->middleware('auth');
+
+Route::post('contacts', 'ContactController@store')->name('contact.store');
+
+Route::get('contacts', 'ContactController@index')->name('contact.index');
+
+Route::get('contacts/create', 'ContactController@create')->name('contact.create');
+

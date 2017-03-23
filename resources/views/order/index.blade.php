@@ -14,9 +14,9 @@
 					<li>Total: {{ $order->total }}</li>
 					<li>Date: {{ $order->date }}</li>
 				</ul>
-
+			@if(Auth::user() && Auth::user()->isAdmin())
 			<a href="{{ route('orders.edit', $order->id) }}" class="btn btn-success">Edit</a>
-
+			@endif
 			</div>
 		</div>
 		@endforeach

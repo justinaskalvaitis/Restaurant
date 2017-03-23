@@ -7,7 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 class Table extends Model
 {
     protected $fillable = [
-        'name', 'min_amount', 'max_amount', 'photo'
+        'name', 'min_amount', 'max_amount', 'photo', 'number_of_persons'
     ];
 
     public function order()

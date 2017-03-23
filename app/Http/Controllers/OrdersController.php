@@ -4,12 +4,20 @@ namespace App\Http\Controllers;
 
 use App\Order;
 use App\OrderLine;
+use App\Table;
 use App\Dish;
 use Illuminate\Http\Request;
 
 
 class OrdersController extends Controller
 {
+
+     public function __construct() {
+        $this->middleware('auth.admin')
+            ->except(['index', 'show', 'addToCart', 'clearCart', 'deleteLine', 'checkout']);
+
+        $this->middleware('auth')->except(['index', 'show', 'addToCart', 'clearCart', 'deleteLine', 'checkout']);
+    }
     /**
      * Display a listing of the resource.
      *
@@ -37,7 +45,7 @@ class OrdersController extends Controller
             return view('order.form');
         }else {
 
- return redirect()->route('dishes.index');
+    return redirect()->route('dishes.index');
     }
 
     }
@@ -50,27 +58,38 @@ class OrdersController extends Controller
      */
     public function store(Request $request)
     {
-       $order = Order::create([
-            'name' => $request->name,
-            'email' => $request->email,
+        $betkoks = session('cart.reservation_info');
+        $order = Order::create([
+             
+            'email' => $betkoks['email'],
+            'table_name' => $betkoks['table_name'],
+            'contact_person' => $betkoks['contact_person'],
+            'phone' => $betkoks['phone'],
+            'order_time' => $betkoks['order_time'],
+            'order_date' => $betkoks['order_date'],
+            'number_of_persons' => $betkoks['number_of_persons'],
+
             'total' => session('cart.total'),
             'date' => \Carbon\Carbon::now(),
             'user_id' => \Auth::user()->id,
 
-            'contact_person' => $request->get('contact_person'),
-            'phone' => $request->get('phone'),
-            'order_date' => $request->get('order_date'),
-            'order_time' => $request->get('order_time')
+            
 
 
 
             ]);
        foreach (session('cart.items') as $item){
         OrderLine::create([
+
             'order_id' => $order->id,
             'dish_id' => $item['id'],
             'quantity' => $item['quantity'],
-            'total' => $item['total']
+            'total' => $item['total'],
+
+            'contact_person' => $request->get('contact_person'),
+            'phone' => $request->get('phone'),
+            'order_date' => $request->get('order_date'),
+            'order_time' => $request->get('order_time')
             ]);
         }
        $this->clearCart();
@@ -177,15 +196,24 @@ class OrdersController extends Controller
         session(['cart.total' => $grand_total]);
 
         return session('cart');
+        
     }
 
+    
     public function clearCart(){
         session([ 'cart.items' => [], 'cart.total' => 0]);
     }
 
+
+
+
     public function checkout(){
-        return view('checkout');
+        $tables = Table::all();
+        return view('checkout', compact('tables'));
     }
+
+
+
 
     public function deleteItem(Request $request){
         $id = $request->id;

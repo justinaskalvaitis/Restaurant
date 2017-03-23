@@ -12,7 +12,7 @@
 
     <!-- Styles -->
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
-     <link href="{{ asset('css/projektas.css') }}" rel="stylesheet">
+    <link href="{{ asset('css/projektas.css') }}" rel="stylesheet">
     <link rel="stylesheet" type="text/css" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
 
     <!-- Scripts -->
@@ -22,97 +22,107 @@
             'cartAddRoute' => route('cart.add'),
             'cartClearRoute' => route('cart.clear'),
 
-        ]) !!};
-    </script>
+            ]) !!};
+        </script>
 
-   
-</head>
-<body>
-    <div id="app">
-        <nav class="navbar navbar-default navbar-static-top">
-            <div class="container">
-                <div class="navbar-header">
+        
+    </head>
+    <body>
+        <div id="app">
+            <nav class="navbar navbar-inverse bg-inverse navbar-static-top">
+                <div class="container">
+                    <div class="navbar-header">
 
-                    <!-- Collapsed Hamburger -->
-                    <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#app-navbar-collapse">
-                        <span class="sr-only">Toggle Navigation</span>
-                        <span class="icon-bar"></span>
-                        <span class="icon-bar"></span>
-                        <span class="icon-bar"></span>
-                    </button>
+                        <!-- Collapsed Hamburger -->
+                        <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#app-navbar-collapse">
+                            <span class="sr-only">Toggle Navigation</span>
+                            <span class="icon-bar"></span>
+                            <span class="icon-bar"></span>
+                            <span class="icon-bar"></span>
+                        </button>
 
-                    <!-- Branding Image -->
-                    <a class="navbar-brand" href="{{ url('/dishes') }}">
-                        {{ config('app.name', 'Laravel') }}
-                    </a>
-                </div>
-
-                <div class="collapse navbar-collapse" id="app-navbar-collapse">
-                    <!-- Left Side Of Navbar -->
-                    <ul class="nav navbar-nav">
-                        &nbsp;
+                        <!-- Branding Image -->
+                        <a class="navbar-brand" href="{{ url('/dishes') }}">
+                            {{ config('app.name', 'Laravel') }}
+                        </a>
+                    </div>
+                    
+                    <ul class="mainNav">
+                        <li><a href="/tables">Tables</a></li>
+                        <li><a href="/dishes">Dishes</a></li>
+                        <li><a href="/contacts">Contacts</a></li>
                     </ul>
+                    <div class="collapse navbar-collapse" id="app-navbar-collapse">
+                        <!-- Left Side Of Navbar -->
+                        <ul class="nav navbar-nav">
+                            &nbsp;
+                        </ul>
 
-                    <!-- Right Side Of Navbar -->
-                    <ul class="nav navbar-nav navbar-right">
-                        <!-- Authentication Links -->
-                        @if (Auth::guest())
-                            <li><a href="{{ route('login') }}">Login</a></li>
-                            <li><a href="{{ route('register') }}">Register</a></li>
-                        @else<li class="dropdown">
-                            <a class="dropdown-toggle" data-toggle="dropdown" role="button" arian-expanded="false">Total: <span id="cart-total"> {{ session('cart.total') ?: '0' }} </span> €</a>
-                            
-                            <ul id="cart-items" class="dropdown-menu" role="menu">
+                        <!-- Right Side Of Navbar -->
+                        <ul class="nav navbar-nav navbar-right">
+                            <li class="dropdown">
+                                <a class="dropdown-toggle" data-toggle="dropdown" role="button" arian-expanded="false">Total: <span id="cart-total"> {{ session('cart.total') ?: '0' }} </span> €</a>
+                                
+                                <ul id="cart-items" class="dropdown-menu" role="menu">
 
-                            @if(session('cart.items') && count(session('cart.items'))>0)
+                                    @if(session('cart.items') && count(session('cart.items'))>0)
 
-                            
-                                @foreach(session('cart.items') as $item)
-                                  <li class="text-center">
-                                    <a href="">{{ $item['title'] }} x {{$item['quantity']}} <strong> {{ $item['total'] }} euro</strong></a>
-                                  </li>
-                                @endforeach
-                            
-                            @endif
-                            </ul>
+                                    
+                                    @foreach(session('cart.items') as $item)
+                                    <li class="text-center">
+                                        <a href="">{{ $item['title'] }} x {{$item['quantity']}} <strong> {{ $item['total'] }} euro</strong></a>
+                                    </li>
+                                    @endforeach
+                                    
+                                    @endif
+                                </ul>
                             </li>
                             <li><a href="#" id="clear-cart">Clear Cart</sub></a></li>
                             <li><a href="{{ route('cart.checkout') }}" id="checkout">Checkout</a></li>
-                              <li class="dropdown">
-                                  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
-                                      {{ Auth::user()->name }} <span class="caret"></span>
-                                  </a>
+                            <!-- Authentication Links -->
+                            @if (Auth::guest())
+                            <li><a href="{{ route('login') }}">Login</a></li>
+                            <li><a href="{{ route('register') }}">Register</a></li>
+                            @else
 
-                               <ul class="dropdown-menu" role="menu">
-                                    <li>
-                                        <a href="{{ route('logout') }}"
-                                            onclick="event.preventDefault();
-                                                     document.getElementById('logout-form').submit();">
-                                            Logout
-                                        </a>
+                            <li class="dropdown">
+                              <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
+                                  {{ Auth::user()->name }} <span class="caret"></span>
+                              </a>
 
-                                       <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
-                                            {{ csrf_field() }}
-                                        </form>
-                                    </li>
-                                </ul>
+                              <ul class="dropdown-menu" role="menu">
+                                <li>
+                                    <a href="{{ route('profile') }}">Profile</a>
+
+                                    <a href="{{ route('logout') }}"
+                                    onclick="event.preventDefault();
+                                    document.getElementById('logout-form').submit();">
+                                    Logout
+                                </a>
+                                
+
+                                <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
+                                    {{ csrf_field() }}
+                                </form>
                             </li>
-                        @endif
-                    </ul>
-                </div>
+                        </ul>
+                    </li>
+                    @endif
+                </ul>
             </div>
-        </nav>
-        @if(session('message'))
-        <div class="alert alert-{{ session('message')['type'] }}">
-            {{ session('message')['text'] }}
         </div>
-        @endif
-        @yield('content')
+    </nav>
+    @if(session('message'))
+    <div class="alert alert-{{ session('message')['type'] }}">
+        {{ session('message')['text'] }}
     </div>
+    @endif
+    @yield('content')
+</div>
 
-    <!-- Scripts -->
+<!-- Scripts -->
 
-    <script src="{{ asset('js/app.js') }}"></script>
-    <script src="{{ asset('js/main.js') }}"></script>
+<script src="{{ asset('js/app.js') }}"></script>
+<script src="{{ asset('js/main.js') }}"></script>
 </body>
 </html>
