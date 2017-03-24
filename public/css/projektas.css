@@ -1,7 +1,11 @@
 body {
 
-	background-image: url(https://static1.squarespace.com/static/557075b9e4b01218e642f1ee/t/559ae17ae4b0cbda1899f2cb/1436213689802/grey-background-hd-564.jpg?format=2500w);
+	background-image: url(http://www.bathkandy.com/wp-content/uploads/2017/01/343299.jpg);
 	background-size: cover;
+}
+
+h1 {
+	color: white;
 }
 
 .form-group input {
@@ -62,3 +66,44 @@ li{
 iframe{
 	margin-top: 150px;
 }
+
+.white li {
+	color: white;
+}
+
+.white th {
+	color: white;
+	padding: 10px;
+	border: 3px solid white;
+}
+
+.white td {
+	color: white;
+	padding: 10px 0 0 10px;
+	border: 3px solid white;
+}
+
+.whiteColors th {
+	color: black;
+}
+
+.whiteColors td {
+	color: black;
+}
+
+.background h1 {
+	color: black;
+}
+
+.background li {
+	color: black;
+}
+
+.background {
+	background-color: white;
+	opacity: 0.5;
+	width: 400px;
+	margin-right: auto;
+	margin-left: auto;
+}
+

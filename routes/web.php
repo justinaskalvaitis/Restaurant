@@ -52,3 +52,4 @@ Route::get('contacts', 'ContactController@index')->name('contact.index');
 
 Route::get('contacts/create', 'ContactController@create')->name('contact.create');
 
+Route::resource('users', 'UserController');

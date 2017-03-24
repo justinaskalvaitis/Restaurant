@@ -5,7 +5,7 @@
 	<div class="row">
 		<div class="col-md-6">
 			<h1>Contact</h1>
-			<ul style="width: 50%;">
+			<ul class="white" style="width: 50%;">
 				<li>{{ $contacts['title']}}</li>
 				<li>{{ $contacts['address']}}</li>
 				<li>{{ $contacts['email']}}</li>
@@ -14,7 +14,7 @@
 		</div>
 
 		<div class="col-md-6">
-			<table class="pull-right workingHours" border="1">
+			<table style="width: 30%;" class="pull-right workingHours white" border="1">
 				<tr>
 					<th>Day</th>
 					<th>Hours</th>

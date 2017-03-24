@@ -27,7 +27,7 @@
 
 <div class="form-group">
 	<h4>Hours</h4>
-	{!! Form::text('hours', null, ['class' => 'form-control', 'placeholder' => 'hours']) !!}
+	{!! Form::textarea('hours', null, ['class' => 'form-control', 'placeholder' => 'hours']) !!}
 </div>
 
 <div class="form-group">

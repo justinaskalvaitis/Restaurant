@@ -35,6 +35,7 @@
 				<td><img src="{{ $item->dish->photo}}" style="width: 150px"></img> {{ $item->dish->title}}</td>
 				<td>{{ $item->quantity }}</td>
 				<td>{{ $item->dish->price}}</td>
+				
 				<td><a id="deleteItem" href="#"><i class="fa fa-trash-o" aria-hidden="true" style="font-size: 3rem; color: grey;"></i></a></td>
 			</tr>
 			@endforeach

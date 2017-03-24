@@ -14,7 +14,7 @@ class OrdersController extends Controller
 
      public function __construct() {
         $this->middleware('auth.admin')
-            ->except(['index', 'show', 'addToCart', 'clearCart', 'deleteLine', 'checkout']);
+            ->except(['index', 'show', 'addToCart', 'clearCart', 'deleteLine', 'checkout', 'store']);
 
         $this->middleware('auth')->except(['index', 'show', 'addToCart', 'clearCart', 'deleteLine', 'checkout']);
     }
@@ -60,6 +60,7 @@ class OrdersController extends Controller
     {
         $betkoks = session('cart.reservation_info');
         $order = Order::create([
+            'name' =>$betkoks['name'],
              
             'email' => $betkoks['email'],
             'table_name' => $betkoks['table_name'],
@@ -80,7 +81,7 @@ class OrdersController extends Controller
             ]);
        foreach (session('cart.items') as $item){
         OrderLine::create([
-
+              'name' =>$betkoks['name'],
             'order_id' => $order->id,
             'dish_id' => $item['id'],
             'quantity' => $item['quantity'],

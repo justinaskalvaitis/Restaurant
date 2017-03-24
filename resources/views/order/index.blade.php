@@ -7,8 +7,8 @@
 	<div class="row">
 		@foreach($chunk as $order)
 		<div class="col-md-4 ">
-			<div class="thumbnail">
-				<ul>
+			<div class="thumbnail ">
+				<ul class="{{ $order->getReservationClass() }}">
 					<li>Name: {{ $order->name }}</li>
 					<li>Email: {{ $order->email }}</li>
 					<li>Total: {{ $order->total }}</li>

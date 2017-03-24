@@ -51,6 +51,10 @@
                         <li><a href="/tables">Tables</a></li>
                         <li><a href="/dishes">Dishes</a></li>
                         <li><a href="/contacts">Contacts</a></li>
+                        @if(Auth::user() && Auth::user()->isAdmin())
+                        <li><a href="/users">Users</a></li>
+                        <li><a href="/orders">Orders</a></li>
+                        @endif
                     </ul>
                     <div class="collapse navbar-collapse" id="app-navbar-collapse">
                         <!-- Left Side Of Navbar -->

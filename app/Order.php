@@ -3,6 +3,7 @@
 namespace App;
 
 use Illuminate\Database\Eloquent\Model;
+use Carbon\Carbon;
 
 class Order extends Model
 {
@@ -22,5 +23,17 @@ class Order extends Model
 	return $this->belongsTo('App\Table');
 	}
 
+  public function getReservationClass() 
+  {
+    $date = Carbon::parse($this->order_date);
+
+    if($date->isToday()){
+      return 'danger';
+    } elseif ($date->isTomorrow()){
+      return 'warning';
+    } elseif ($date->isPast()){
+      return 'success';
+    }
+  }
 
 }
