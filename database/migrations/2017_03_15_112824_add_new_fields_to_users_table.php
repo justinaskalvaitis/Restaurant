@@ -16,7 +16,7 @@ class AddNewFieldsToUsersTable extends Migration
         Schema::table('users', function (Blueprint $table) {
             $table->string('surname');
             $table->date('dateofbirth');
-            $table->integer('phonenumber');
+            $table->string('phonenumber');
             $table->string('address');
             $table->string('city');
             $table->string('country');
@@ -34,7 +34,7 @@ class AddNewFieldsToUsersTable extends Migration
         Schema::table('users', function (Blueprint $table) {
             $table->string('surname');
             $table->date('dateofbirth');
-            $table->integer('phonenumber');
+            $table->string('phonenumber');
             $table->string('address');
             $table->string('city');
             $table->string('country');

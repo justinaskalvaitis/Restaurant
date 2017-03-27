@@ -29,11 +29,15 @@
 			</tr>
 			@endforeach
 			<tr>
+			<td>Without tax: {{ $tax }}</td>
+			<td>Tax: {{ session('cart.total') - $tax }}</td>
 			<td>Total: {{ session("cart.total")}} Euro</td>
+
 			</tr>
 		</tbody>
 
 	</table>
+	
 		{!! Form::open(['route' => ['checkout.store'], 'method' => 'POST']) !!}
 
 		<div>

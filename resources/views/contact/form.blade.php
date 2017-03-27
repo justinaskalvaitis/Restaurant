@@ -4,10 +4,15 @@
 
 <div class="container">
 
-{!! Form::open(['route' => ['contact.store'], 'method' => 'POST']) !!}
+@if(isset($contact))
+		<h2>Editing contact</h2>
+		{!! Form::model($contact, ['route' => ['contacts.update', $contact->id], 'method' => 'put']) !!}
+		@else
+		{!! Form::open(['route' => ['contacts.store'], 'method' => 'POST']) !!}
+		@endif
 <div class="form-group">
 	<h4>Title</h4>
-	{!! Form::text('title', null, ['class' => 'form-control', 'placeholder' => 'title']) !!}
+	{!! Form::text('title', null, ['class' => 'form-control', 'placeholder' => 'Title']) !!}
 </div>
 
 <div class="form-group">
@@ -37,9 +42,17 @@
 
 {!! Form::submit('save', ['class' => 'btn btn-primary']) !!}
 
-
-
-
 {!! Form::close() !!}
+
+@if(isset($contact))
+
+
+	{!! Form::open(['route'=> ['contacts.destroy', $contact->id], 'method' => 'DELETE']) !!}
+	{!! Form::submit('Delete', ['class' => 'btn btn-danger']) !!}
+
+
+
+	{!! Form::close() !!}
+	@endif
 </div>
 @endsection

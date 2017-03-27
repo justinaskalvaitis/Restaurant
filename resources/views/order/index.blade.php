@@ -13,6 +13,7 @@
 					<li>Email: {{ $order->email }}</li>
 					<li>Total: {{ $order->total }}</li>
 					<li>Date: {{ $order->date }}</li>
+					<li>Created at: {{ $order->created_at }}</li>
 				</ul>
 			@if(Auth::user() && Auth::user()->isAdmin())
 			<a href="{{ route('orders.edit', $order->id) }}" class="btn btn-success">Edit</a>

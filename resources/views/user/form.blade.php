@@ -2,9 +2,15 @@
 
 @section('content')
 <div class="container">
-<h2>Editing user - {{$user->name}}</h2>
-		{!! Form::model($user, ['route' => ['users.update', $user->id], 'method' => 'put']) !!}
 
+	
+		@if(isset($user))
+		<h2>Editing user - {{$user->name}}</h2>
+		{!! Form::model($user, ['route' => ['users.update', $user->id], 'method' => 'put']) !!}
+	@else
+		{!! Form::open(['route' => ['users.store'], 'method' => 'POST']) !!}
+	@endif
+	
 	<div class="form-group">
 		<h4>Name</h4>
 		{!! Form::text('name', null, ['class' => 'form-control', 'placeholder' => 'name']) !!}
@@ -49,7 +55,6 @@
 	{!! Form::submit('Save', ['class' => 'btn btn-primary']) !!}
 	
 	{!! Form::close() !!}
-
 
 
 </div>

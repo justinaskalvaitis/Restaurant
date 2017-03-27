@@ -12,7 +12,7 @@
 
 		@foreach($chunk as $dish)
 				<div class="col-md-4 "  >
-					<div class="thumbnail">
+					<div class="thumbnail thumbnailHover">
 						<a href ="{{ route('dishes.show', $dish->id) }}"><img src="{{ $dish->photo }}"></a>
 						<p>{{ $dish->description }}</p>
 						<p>Quantity: {{ $dish->quantity }}</p>

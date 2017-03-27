@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Order;
+use App\Contact;
 use App\OrderLine;
 use App\Table;
 use App\Dish;
@@ -16,7 +17,7 @@ class OrdersController extends Controller
         $this->middleware('auth.admin')
             ->except(['index', 'show', 'addToCart', 'clearCart', 'deleteLine', 'checkout', 'store']);
 
-        $this->middleware('auth')->except(['index', 'show', 'addToCart', 'clearCart', 'deleteLine', 'checkout']);
+        $this->middleware('auth')->except(['index', 'show', 'addToCart', 'clearCart', 'deleteLine']);
     }
     /**
      * Display a listing of the resource.
@@ -26,7 +27,7 @@ class OrdersController extends Controller
     public function index()
     {
         if(\Auth::user()->type =='admin'){
-            $orders = Order::all();
+            $orders = Order::all()->sortByDesc("created_at");
         } else {
             $orders = Order::where('user_id', \Auth::user()->id)->get();
         }
@@ -94,7 +95,7 @@ class OrdersController extends Controller
             ]);
         }
        $this->clearCart();
-       return redirect()->route('orders.index')->with('message', [
+       return redirect()->route('contacts.index')->with('message', [
         'text' => 'uzsakymas priimtas',
         'type' => 'success'
         ]);
@@ -210,7 +211,8 @@ class OrdersController extends Controller
 
     public function checkout(){
         $tables = Table::all();
-        return view('checkout', compact('tables'));
+        $tax = number_format(session('cart.total') / 1.21);
+        return view('checkout', compact('tables', 'tax'));
     }
 
 

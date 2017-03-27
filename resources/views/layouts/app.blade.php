@@ -43,7 +43,7 @@
 
                         <!-- Branding Image -->
                         <a class="navbar-brand" href="{{ url('/dishes') }}">
-                            {{ config('app.name', 'Laravel') }}
+                            <img style="width: 50px" src="https://logopond.com/assets/img/logomilk-footer.png">
                         </a>
                     </div>
                     
@@ -82,7 +82,11 @@
                                 </ul>
                             </li>
                             <li><a href="#" id="clear-cart">Clear Cart</sub></a></li>
+
+
                             <li><a href="{{ route('cart.checkout') }}" id="checkout">Checkout</a></li>
+
+
                             <!-- Authentication Links -->
                             @if (Auth::guest())
                             <li><a href="{{ route('login') }}">Login</a></li>
@@ -123,7 +127,7 @@
     @endif
     @yield('content')
 </div>
-
+<footer class="navbar-inverse" style=" color: white; text-align:center;">Restaurante (c)</footer>
 <!-- Scripts -->
 
 <script src="{{ asset('js/app.js') }}"></script>

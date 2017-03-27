@@ -3,6 +3,7 @@
 @section('content')
 <div class="container">
 	<div class="row">
+		
 		<div class="col-md-6">
 			<h1>Contact</h1>
 			<ul class="white" style="width: 50%;">
@@ -13,42 +14,12 @@
 			</ul>
 		</div>
 
-		<div class="col-md-6">
-			<table style="width: 30%;" class="pull-right workingHours white" border="1">
-				<tr>
-					<th>Day</th>
-					<th>Hours</th>
-				</tr>
-				<tr>
-					<td>Monday</td>
-					<td>closed</td>
-				</tr>
-				<tr>
-					<td>Tuesday</td>
-					<td>closed</td>
-				</tr>
-				<tr>
-					<td>Wednesday</td>
-					<td>8:00 - 20:00</td>
-				</tr>
-				<tr>
-					<td>Thursday</td>
-					<td>8:00 - 20:00</td>
-				</tr>
-				<tr>
-					<td>Friday</td>
-					<td>8:00 - 20:00</td>
-				</tr>
-				<tr>
-					<td>Saturday</td>
-					<td>8:00 - 20:00</td>
-				</tr>
-				<tr>
-					<td>Sunday</td>
-					<td>8:00 - 20:00</td>
-				</tr>
-			</table>
+		<div class="col-md-6 thumbnail">
+			{!! $contacts->hours !!}
 		</div>
+		@if(Auth::user() && Auth::user()->isAdmin())
+			<a href="{{ route('contacts.edit', $contacts->id) }}" class="btn btn-success">Edit</a>
+		@endif
 	</div>
 </div>
 {!! $contacts['map'] !!}

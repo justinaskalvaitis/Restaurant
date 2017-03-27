@@ -79,8 +79,9 @@
 		   				<td>{{ $order->total}}</td>
 		   				<td>{{ $order->order_date}}</td>
 		   				<td>
-		   				{!! Form::open(['route'=> ['tables.destroy', $table->id], 'method' => 'DELETE']) !!}
+		   				{!! Form::open(['route'=> ['orders.destroy', $order->id], 'method' => 'DELETE']) !!}
 						{!! Form::submit('Delete', ['class' => 'btn btn-danger']) !!}
+						</td>
 
 
 

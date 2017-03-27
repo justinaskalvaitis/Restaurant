@@ -62,6 +62,8 @@ class ContactController extends Controller
      */
     public function show(Contact $contact)
     {
+        $contact = Contact::find($contacts);
+        return view('contact.show', compact('contact'));
     }
 
     /**
@@ -70,9 +72,10 @@ class ContactController extends Controller
      * @param  \App\Contact  $contact
      * @return \Illuminate\Http\Response
      */
-    public function edit(Contact $contact)
+    public function edit($id)
     {
-        //
+        $contact = Contact::find($id);
+        return view('contact.form', compact('contact'));
     }
 
     /**
@@ -82,9 +85,10 @@ class ContactController extends Controller
      * @param  \App\Contact  $contact
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Contact $contact)
+    public function update(Request $request, $id)
     {
-        //
+        Contact::find($id)->update($request->all());
+        return redirect()->route('contacts.index');
     }
 
     /**
@@ -95,6 +99,7 @@ class ContactController extends Controller
      */
     public function destroy(Contact $contact)
     {
-        //
+        Contact::find($id)->delete();
+        return redirect()->route('contacts.index');
     }
 }

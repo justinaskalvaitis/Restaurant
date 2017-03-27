@@ -46,10 +46,6 @@ Route::get('profile', 'UserController@profile')->name('profile')->middleware('au
 
 Route::put('profile', 'UserController@update')->name('profile.update')->middleware('auth');
 
-Route::post('contacts', 'ContactController@store')->name('contact.store');
-
-Route::get('contacts', 'ContactController@index')->name('contact.index');
-
-Route::get('contacts/create', 'ContactController@create')->name('contact.create');
+Route::resource('contacts', 'ContactController');
 
 Route::resource('users', 'UserController');
