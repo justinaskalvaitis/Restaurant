@@ -24,12 +24,17 @@
 
             ]) !!};
         </script>
-
+        <script src='//cloud.tinymce.com/stable/tinymce.min.js'></script>
+  <script>
+  tinymce.init({
+    selector: 'textarea'
+  });
+  </script>
         
     </head>
     <body>
         <div id="app">
-            <nav class="navbar navbar-inverse bg-inverse navbar-static-top">
+            <nav class="navbar navbar-inverse bg-inverse navbar-static-top" >
                 <div class="container">
                     <div class="navbar-header">
 
@@ -43,19 +48,20 @@
 
                         <!-- Branding Image -->
                         <a class="navbar-brand" href="{{ url('/dishes') }}">
-                            <img style="width: 50px" src="https://logopond.com/assets/img/logomilk-footer.png">
+                            <img style="width: 50px" src="http://1.bp.blogspot.com/-wMCW2ukMSsI/To4cNuHpgQI/AAAAAAAACRI/00QKIHx_UIw/s500/Chili%2527s+logo+2011.png">
                         </a>
+                        
+                            <a class="navTab" href="/tables">Tables</a>
+                            <a class="navTab" href="/dishes">Dishes</a>
+                            <a class="navTab" href="/contacts">Contacts</a>
+                            @if(Auth::user() && Auth::user()->isAdmin())
+                            <a class="navTab" href="/users">Users</a>
+                            <a class="navTab" href="/orders">Orders</a>
+                            @endif
+                  
                     </div>
                     
-                    <ul class="mainNav">
-                        <li><a href="/tables">Tables</a></li>
-                        <li><a href="/dishes">Dishes</a></li>
-                        <li><a href="/contacts">Contacts</a></li>
-                        @if(Auth::user() && Auth::user()->isAdmin())
-                        <li><a href="/users">Users</a></li>
-                        <li><a href="/orders">Orders</a></li>
-                        @endif
-                    </ul>
+                    
                     <div class="collapse navbar-collapse" id="app-navbar-collapse">
                         <!-- Left Side Of Navbar -->
                         <ul class="nav navbar-nav">
@@ -125,9 +131,13 @@
         {{ session('message')['text'] }}
     </div>
     @endif
+
+    
+
+
     @yield('content')
 </div>
-<footer class="navbar-inverse" style=" color: white; text-align:center;">Restaurante (c)</footer>
+
 <!-- Scripts -->
 
 <script src="{{ asset('js/app.js') }}"></script>

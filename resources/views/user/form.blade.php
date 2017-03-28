@@ -45,11 +45,12 @@
 		<h4>Zipcode</h4>
 		{!! Form::text('zipcode', null, ['class' => 'form-control', 'placeholder' => 'zipcode']) !!}
 	</div>
-
+	@if(Auth::user() && Auth::user()->isAdmin())
 	<div class="form-group">
 		<h4>Account type</h4>
 		{!! Form::text('type', null, ['class' => 'form-control', 'placeholder' => 'type']) !!}
 	</div>
+	@endif
 
 	
 	{!! Form::submit('Save', ['class' => 'btn btn-primary']) !!}

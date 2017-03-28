@@ -35,6 +35,18 @@ class CheckoutController extends Controller
      */
     public function store(Request $request)
     {
+        $this->validate($request, [
+
+         'name' => 'required|max:255',
+          'table_name' => 'required|exists:tables,id',
+          'email' => 'required|email|max:255',
+          'order_date' => 'nullable|date|date_format:Y-m-d',
+          'phone' => 'required|numeric',
+          'number_of_persons' => 'required|numeric|between:0,15',
+          'order_time' => 'required',
+
+       ]);
+
         $reservationInfo = [
             'name' => $request->name,
             'table_name' => $request->table_name,

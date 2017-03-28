@@ -61,8 +61,7 @@ class OrdersController extends Controller
     {
         $betkoks = session('cart.reservation_info');
         $order = Order::create([
-            'name' =>$betkoks['name'],
-             
+            'name' =>$betkoks['name'],       
             'email' => $betkoks['email'],
             'table_name' => $betkoks['table_name'],
             'contact_person' => $betkoks['contact_person'],
@@ -74,10 +73,6 @@ class OrdersController extends Controller
             'total' => session('cart.total'),
             'date' => \Carbon\Carbon::now(),
             'user_id' => \Auth::user()->id,
-
-            
-
-
 
             ]);
        foreach (session('cart.items') as $item){
@@ -201,22 +196,15 @@ class OrdersController extends Controller
         
     }
 
-    
     public function clearCart(){
         session([ 'cart.items' => [], 'cart.total' => 0]);
     }
-
-
-
 
     public function checkout(){
         $tables = Table::all();
         $tax = number_format(session('cart.total') / 1.21);
         return view('checkout', compact('tables', 'tax'));
     }
-
-
-
 
     public function deleteItem(Request $request){
         $id = $request->id;

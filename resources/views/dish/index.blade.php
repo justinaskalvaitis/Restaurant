@@ -3,8 +3,7 @@
 @section('content')
 <div class="container">
 @if(Auth::user() && Auth::user()->isAdmin())
-	<a href="{{ route('dishes.create') }}" class="btn btn-success">New</a>
-	<a href="{{ route('orders.index') }}" class="btn btn-warning pull-right">Orders</a>
+	<a href="{{ route('dishes.create') }}" class="btn btn-success">Add New Dish</a>
 @endif
 <h1>Dishes</h1>
 	@foreach($dishes->chunk(3) as $chunk)

@@ -69,36 +69,28 @@
 			   		</tr>
 		   		</thead>
 		   		<tbody>
-		   		@foreach($user->orders as $order)
-		   			<tr class='{{ $order->getReservationClass() }}'>
-		   				<td>{{ $order->name}}</td>
-		   				<td>{{ $order->contact_person}}</td>
-		   				<td>{{ $order->table_name}}</td>
-		   				<td>{{ $order->phone}}</td>
-		   				<td>{{ $order->number_of_persons}}</td>
-		   				<td>{{ $order->total}}</td>
-		   				<td>{{ $order->order_date}}</td>
-		   				<td>
-		   				{!! Form::open(['route'=> ['orders.destroy', $order->id], 'method' => 'DELETE']) !!}
-						{!! Form::submit('Delete', ['class' => 'btn btn-danger']) !!}
-						</td>
-
-
-
-
-						{!! Form::close() !!}/td>
-		   			</tr>
+		   			@foreach($user->orders as $order)
+			   			<tr class='{{ $order->getReservationClass() }}'>
+			   				<td>{{ $order->name}}</td>
+			   				<td>{{ $order->contact_person}}</td>
+			   				<td>{{ $order->table_name}}</td>
+			   				<td>{{ $order->phone}}</td>
+			   				<td>{{ $order->number_of_persons}}</td>
+			   				<td>{{ $order->total}}</td>
+			   				<td>{{ $order->order_date}}</td>
+			   				<td>
+			   				{!! Form::open(['route'=> ['orders.destroy', $order->id], 'method' => 'DELETE']) !!}
+							{!! Form::submit('Delete', ['class' => 'btn btn-danger']) !!}
+							{!! Form::close() !!}
+							</td>
+							
+			   			</tr>
 		   			@endforeach
 		   		</tbody>
 		   	</table>
-
 		    </div>
-
 		  </div>
-
 		</div>
-
-
 	</div>
 </div>
 

@@ -1,12 +1,11 @@
 body {
 
-	background-image: url(http://www.bathkandy.com/wp-content/uploads/2017/01/343299.jpg);
+	background-image: url(http://i0.wp.com/del-villaggio.co.uk/wp-content/uploads/2014/05/photodune-11213692-italian-food-cooking-ingredients-l.jpg?fit=2048%2C1365);
 	background-size: cover;
+	background-attachment: fixed;
+	color: black;
 }
 
-h1 {
-	color: white;
-}
 
 .form-group input {
 	width: 100%;
@@ -26,37 +25,27 @@ h1 {
 .thumbnailHover:hover {
 	transform: scale(1.1);
 	transition: 1s all;
+	
 }
 
-
-.mainNav li {
+.navTab {
 	list-style: none;
 	display: inline-block;
 	font-size: 2rem;
-			margin-right: 30px;
-			margin-left: 30px;
-
-}
-.mainNav {
-		margin: 9px;
-
-		margin-bottom: -40px;
-}
-
-.mainNav li a{
+	margin-right: 30px;
+	margin-left: 30px;
+	margin: 9px;
+	margin-bottom: -40px;
 	text-decoration: none;
 	color: grey;
 }
 
-.mainNav li a:hover{
+.navTab:hover{
 	color: white;
-	transition: 1s all;
+	text-decoration: none;
 }
 
-a:hover{
-	color: white;
-	transition: 1s all;
-}
+
 li{
 	list-style: none;
 }
@@ -68,18 +57,13 @@ iframe{
 	margin-top: 150px;
 }
 
-.white li {
-	color: white;
-}
 
 .white th {
-	color: white;
 	padding: 10px;
 	border: 3px solid white;
 }
 
 .white td {
-	color: white;
 	padding: 10px 0 0 10px;
 	border: 3px solid white;
 }
@@ -107,4 +91,7 @@ iframe{
 	margin-right: auto;
 	margin-left: auto;
 }
+
+
+
 

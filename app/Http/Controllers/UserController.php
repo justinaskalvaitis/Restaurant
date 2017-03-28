@@ -15,19 +15,21 @@ class UserController extends Controller
         return view('auth.register', compact('user', 'title'));
     }
 
-
-
-    public function show(user $user)
+    public function show($id)
     {
+        if(\Auth::user()->id == $id || \Auth::user()->isAdmin())
+        {
+        $user = User::find($id);
         return view('user.show', compact('user'));
+        } else {
+            return redirect()->route('dishes.index');
+        }
     }
 
     public function update(Request $request, $id)
     {
         User::find($id)->update($request->all());
-        
-
-        return redirect()->route('dishes.index')->with('message', [
+        return redirect()->route('users.index')->with('message', [
             'text' => 'Profile updated!',
             'type' => 'success'
         ]);
@@ -39,12 +41,16 @@ class UserController extends Controller
         return view('user.index', compact('users'));
     }
 
-    
-
     public function edit($id)
     {
-        $user = User::find($id);
-        return view('user.form', compact('user'));
+    if(\Auth::user()->id == $id || \Auth::user()->isAdmin())
+    {
+        
+    $user = User::find($id);
+    return view('user.form', compact('user'));
+    } else {
+        return redirect()->route('dishes.index');
+    }
     }
 
     public function destroy($id)
@@ -53,5 +59,4 @@ class UserController extends Controller
         return redirect()->route('users.index');
     }
 
-    
 }

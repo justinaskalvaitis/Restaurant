@@ -2,8 +2,8 @@
 
 @section('content')
 <div class="container">
-<a href="{{ route('dishes.create') }}" class="btn btn-success">New</a>
-<a href="{{ route('orders.index') }}" class="btn btn-warning pull-right">Orders</a>
+<a href="{{ route('tables.create') }}" class="btn btn-success">Add New Table</a>
+
 <h1>Tables</h1>
 	@foreach($tables->chunk(3) as $chunk)
 	<div class="row">

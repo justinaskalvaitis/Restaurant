@@ -26,6 +26,7 @@ class TableController extends Controller
     public function create()
     {
         return view('table.form');
+        return redirect()->route('tables.index');
     }
 
     /**

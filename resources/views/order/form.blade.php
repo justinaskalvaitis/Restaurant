@@ -20,8 +20,25 @@
 		{!! Form::email('email', Auth::user() ? Auth::user()->email : null, ['class' => 'form-control', 'placeholder' => 'email']) !!}
 	</div>
 
+	<div class="form-group">
+	<h4>Phone number</h4>
+		{!! Form::text('phonenumber', Auth::user() ? Auth::user()->phonenumber : null, ['class' => 'form-control', 'placeholder' => 'phone']) !!}
+	</div>
 
+	<div class="form-group">
+	<h4>Table name</h4>
+		{!! Form::text('table_name',  null, ['class' => 'form-control', 'placeholder' => 'table name']) !!}
+	</div>
 
+	<div class="form-group">
+	<h4>Reservation date</h4>
+		{!! Form::date('order_date',  null, ['class' => 'form-control', 'placeholder' => 'date']) !!}
+	</div>
+
+	<div class="form-group">
+	<h4>Reservation time</h4>
+		{!! Form::time('order_time', null, ['class' => 'form-control', 'placeholder' => 'date']) !!}
+	</div>
 
 	
 

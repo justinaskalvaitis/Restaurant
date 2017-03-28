@@ -9,7 +9,7 @@ class Price {
 
 	public static function getVat($value)
 	{
-		return $value - sels::getWithoutVat($value),
+		return ($value - sels::getWithoutVat($value),
 		2
 		);
 	}
