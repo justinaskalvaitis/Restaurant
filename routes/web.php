@@ -46,6 +46,10 @@ Route::get('profile', 'UserController@profile')->name('profile')->middleware('au
 
 Route::put('profile', 'UserController@update')->name('profile.update')->middleware('auth');
 
+Route::delete('orders/line/{id}/destroy', 'OrdersController@destroyLine')->name('orders.line_destroy');
+
+Route::put('orders/{id}/add-dish', 'OrdersController@addToOrder')->name('orders.add_dish');
+
 Route::resource('contacts', 'ContactController');
 
 Route::resource('users', 'UserController');

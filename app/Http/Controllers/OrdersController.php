@@ -77,7 +77,7 @@ class OrdersController extends Controller
             ]);
        foreach (session('cart.items') as $item){
         OrderLine::create([
-              'name' =>$betkoks['name'],
+            'name' =>$betkoks['name'],
             'order_id' => $order->id,
             'dish_id' => $item['id'],
             'quantity' => $item['quantity'],
@@ -117,9 +117,10 @@ class OrdersController extends Controller
     public function edit($id)
     {
         $order = Order::find($id);
+        $dishes = Dish::all();
 
 
-        return view('order.form', compact('order'));
+        return view('order.form', compact('order', 'dishes'));
     }
 
     /**
@@ -226,6 +227,37 @@ class OrdersController extends Controller
 
 
         return redirect()->route('cart.checkout');
+    }
+
+    public function destroyLine($id)
+    {
+        $line = OrderLine::findOrFail($id);
+
+        /**
+         * pakoreguoja bendrą orderio sumą
+         */
+        $line->order->total -= $line->total;
+        $line->order->save();
+
+        $line->delete();
+
+        return redirect()->route('orders.edit', $line->order->id);
+    }
+
+    public function addToOrder($id, Request $request){
+        
+
+        $order = Order::findOrFail($id);
+        $dish = Dish::findOrFail($request->dish);
+        
+        $line = new OrderLine;
+        $line->order_id = $order->id;
+        $line->dish_id = $dish->id;
+        $line->quantity = $request->quantity;
+        $line->total = $dish->price * $request->quantity;
+        $line->save();
+
+        return redirect()->route('orders.edit', $line->order->id);
     }
     
 }

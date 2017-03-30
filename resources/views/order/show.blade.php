@@ -37,6 +37,7 @@
 				<td>{{ $item->dish->price}}</td>
 				
 				<td><a id="deleteItem" href="#"><i class="fa fa-trash-o" aria-hidden="true" style="font-size: 3rem; color: grey;"></i></a></td>
+				
 			</tr>
 			@endforeach
 			<tr>
